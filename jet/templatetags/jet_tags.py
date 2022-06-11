@@ -11,7 +11,7 @@ from django.forms import CheckboxInput, ModelChoiceField, Select, ModelMultipleC
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
-from django.utils.encoding import smart_text
+
 
 from django.utils.encoding import smart_str as smart_text
 from jet import settings, VERSION
