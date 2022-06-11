@@ -345,7 +345,6 @@ def get_menu_items(context):
                 item['label'] = data['label']
 
             if 'url' in data:
-                print("url", data["url"], "orig", original_app_list, "getme", get_menu_item_url(data['url']))
                 item['url'] = get_menu_item_url(data['url'], original_app_list)
 
             if 'url_blank' in data:
@@ -376,7 +375,6 @@ def get_menu_items(context):
                 item['items'] = list(map(lambda x: get_menu_item_app_model(app_label, x), data['items']))
 
             if 'url' in data:
-                print("url", data["url"], "orig", original_app_list, "getme", get_menu_item_url(data['url']))
                 item['url'] = get_menu_item_url(data['url'], original_app_list)
 
             if 'url_blank' in data:
