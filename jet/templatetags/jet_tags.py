@@ -12,6 +12,8 @@ from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
 from django.utils.encoding import smart_text
+
+from django.utils.encoding import smart_str as smart_text
 from jet import settings, VERSION
 from jet.models import Bookmark
 from jet.utils import get_model_instance_label, get_model_queryset, get_possible_language_codes, \
