@@ -2,8 +2,9 @@ from importlib import import_module
 import json
 from django.db import models
 from six import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from jet.utils import LazyDateTimeEncoder
+from django.contrib.auth import get_user_model
 
 
 @python_2_unicode_compatible
@@ -11,7 +12,7 @@ class UserDashboardModule(models.Model):
     title = models.CharField(verbose_name=_('Title'), max_length=255)
     module = models.CharField(verbose_name=_('module'), max_length=255)
     app_label = models.CharField(verbose_name=_('application name'), max_length=255, null=True, blank=True)
-    user = models.PositiveIntegerField(verbose_name=_('user'))
+    user = models.ForeignKey(get_user_model(),verbose_name=_('user'), on_delete=models.DO_NOTHING)
     column = models.PositiveIntegerField(verbose_name=_('column'))
     order = models.IntegerField(verbose_name=_('order'))
     settings = models.TextField(verbose_name=_('settings'), default='', blank=True)

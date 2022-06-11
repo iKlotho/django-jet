@@ -2,6 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.db import migrations, models
+import django.db.models.deletion
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
@@ -17,7 +20,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(verbose_name='Title', max_length=255)),
                 ('module', models.CharField(verbose_name='module', max_length=255)),
                 ('app_label', models.CharField(verbose_name='application name', max_length=255, blank=True, null=True)),
-                ('user', models.PositiveIntegerField(verbose_name='user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user', to=settings.AUTH_USER_MODEL)),
                 ('column', models.PositiveIntegerField(verbose_name='column')),
                 ('order', models.IntegerField(verbose_name='order')),
                 ('settings', models.TextField(verbose_name='settings', blank=True, default='')),

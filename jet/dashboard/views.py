@@ -13,7 +13,7 @@ from jet.dashboard.forms import UpdateDashboardModulesForm, AddUserDashboardModu
 from jet.dashboard.models import UserDashboardModule
 from jet.utils import JsonResponse, get_app_list, SuccessMessageMixin, user_is_authenticated
 from django.views.generic import UpdateView
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class UpdateDashboardModuleView(SuccessMessageMixin, UpdateView):
@@ -219,7 +219,7 @@ def load_dashboard_module_view(request, pk):
         if not user_is_authenticated(request.user) or not request.user.is_staff:
             raise ValidationError('error')
 
-        instance = UserDashboardModule.objects.get(pk=pk, user=request.user.pk)
+        instance = UserDashboardModule.objects.get(pk=pk, user=request.user)
         module_cls = instance.load_module()
         module = module_cls(model=instance, context={'request': request})
         result['html'] = module.render()

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import django.utils.timezone
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
@@ -17,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('url', models.URLField(verbose_name='URL')),
                 ('title', models.CharField(max_length=255, verbose_name='title')),
-                ('user', models.PositiveIntegerField(verbose_name='user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user', to=settings.AUTH_USER_MODEL)),
                 ('date_add', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date created')),
             ],
             options={
@@ -31,7 +32,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('app_label', models.CharField(max_length=255, verbose_name='application name')),
-                ('user', models.PositiveIntegerField(verbose_name='user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user', to=settings.AUTH_USER_MODEL)),
                 ('date_add', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date created')),
             ],
             options={
@@ -47,7 +48,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255, verbose_name='Title')),
                 ('module', models.CharField(max_length=255, verbose_name='module')),
                 ('app_label', models.CharField(max_length=255, null=True, verbose_name='application name', blank=True)),
-                ('user', models.PositiveIntegerField(verbose_name='user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user', to=settings.AUTH_USER_MODEL)),
                 ('column', models.PositiveIntegerField(verbose_name='column')),
                 ('order', models.IntegerField(verbose_name='order')),
                 ('settings', models.TextField(default=b'', verbose_name='settings', blank=True)),
