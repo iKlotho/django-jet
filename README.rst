@@ -2,6 +2,14 @@
 Django JET
 ==========
 
+Updated for Django4
+
+Install with
+
+
+    pip install git+https://github.com/iKlotho/django-jet
+
+
 .. image:: https://travis-ci.org/geex-arts/django-jet.svg?branch=master
     :target: https://travis-ci.org/geex-arts/django-jet
 
