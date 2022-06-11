@@ -7,7 +7,7 @@ except ImportError: # Django 1.11
 from django.template.loader import render_to_string
 from jet.dashboard import modules
 from jet.dashboard.models import UserDashboardModule
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from jet.ordered_set import OrderedSet
 from jet.utils import get_admin_site_name, context_to_dict
 
@@ -65,7 +65,7 @@ class Dashboard(object):
 
         .. code-block:: python
 
-            from django.utils.translation import ugettext_lazy as _
+            from django.utils.translation import gettext_lazy as _
             from jet.dashboard import modules
             from jet.dashboard.dashboard import Dashboard, AppIndexDashboard
 
@@ -120,7 +120,7 @@ class Dashboard(object):
             module_models.append(UserDashboardModule.objects.create(
                 title=module.title,
                 app_label=self.app_label,
-                user=user.pk,
+                user=user,
                 module=module.fullname(),
                 column=column,
                 order=order,
@@ -134,7 +134,7 @@ class Dashboard(object):
     def load_modules(self):
         module_models = UserDashboardModule.objects.filter(
             app_label=self.app_label,
-            user=self.context['request'].user.pk
+            user=self.context['request'].user
         ).all()
 
         if len(module_models) == 0:

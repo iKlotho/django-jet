@@ -1,5 +1,5 @@
 import django
-from django.conf.urls import url
+from django.urls import re_path as url
 
 try:
     from django.views.i18n import JavaScriptCatalog

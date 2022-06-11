@@ -20,14 +20,14 @@ except ImportError: # Django 1.11
     from django.urls import reverse, resolve, NoReverseMatch
 
 from django.contrib.admin import AdminSite
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str as smart_text
 from django.utils.text import capfirst
 from django.contrib import messages
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str as force_text
 from django.utils.functional import Promise
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 
 try:
@@ -232,6 +232,8 @@ def get_model_queryset(admin_site, model, request, preserved_filters=None):
         # django version < 2.1
         pass
 
+
+    change_list_args.append(model_admin.search_help_text)
     try:
         cl = ChangeList(*change_list_args)
         queryset = cl.get_queryset(request)
