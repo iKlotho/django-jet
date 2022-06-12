@@ -4,7 +4,7 @@ from django.db import models
 from six import python_2_unicode_compatible
 from django.utils.translation import gettext_lazy as _
 from jet.utils import LazyDateTimeEncoder
-from django.contrib.auth import get_user_model
+from django.conf import settings as django_settings
 
 
 @python_2_unicode_compatible
@@ -12,7 +12,9 @@ class UserDashboardModule(models.Model):
     title = models.CharField(verbose_name=_('Title'), max_length=255)
     module = models.CharField(verbose_name=_('module'), max_length=255)
     app_label = models.CharField(verbose_name=_('application name'), max_length=255, null=True, blank=True)
-    user = models.ForeignKey(get_user_model(),verbose_name=_('user'), on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(
+        django_settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
     column = models.PositiveIntegerField(verbose_name=_('column'))
     order = models.IntegerField(verbose_name=_('order'))
     settings = models.TextField(verbose_name=_('settings'), default='', blank=True)
