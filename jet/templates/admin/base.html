@@ -36,6 +36,9 @@
 
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+<script src="{% static 'admin/js/vendor/jquery/jquery.js' as url %}{{ url|jet_append_version }}"
+            type="text/javascript"></script>
+<script src="{% static 'admin/js/jquery.init.js' as url %}{{ url|jet_append_version }}"></script>
 </head>
 {% load i18n %}
 
